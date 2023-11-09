@@ -3,10 +3,11 @@ on:
   push:
   workflow_dispatch: 
   workflow_call:
+  
 jobs:
   security_scan:
       #if: github.event.pull_request.merged == true && github.head_ref == 'dev'
-      if: github.event_name == 'pull_request'
+      # if: github.event_name == 'pull_request'
       name: GGshield
       uses: ./.github/workflows/ggshield.yml
       secrets: inherit
