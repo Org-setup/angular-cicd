@@ -2,7 +2,11 @@ name: docker build push trivy scanning
 on:
   workflow_call:
   workflow_dispatch:
-
+permissions:
+  actions: read|write|none
+  packages: read|write|none
+  issues: read|write|none
+  
 jobs:
     docker_build_push:
           runs-on: ubuntu-latest
@@ -18,7 +22,16 @@ jobs:
                 password: ${{ secrets.DOCKER_TOKEN }}
           - name: Build Container image
             run: docker build -t ${{ secrets.DOCKER_REPO }}:${{ github.run_number }} .
- 
+          
+          # - name: Trivy Install
+          #   run: |
+          #       curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/master/contrib/install.sh | sh -s -- -b /usr/local/bin 
+          #       echo "print trivy version"
+          #       trivy --version 
+             
+          # - name: Trivy scanning 
+          #   run: |   
+          #     trivy image --exit-code 0 --severity LOW,MEDIUM 
           - name: Run Trivy vulnerability scanner
             uses: aquasecurity/trivy-action@master
             with:
