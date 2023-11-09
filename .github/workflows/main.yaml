@@ -14,7 +14,7 @@ jobs:
       secrets: inherit
   
   build_and_test:
-      if: github.event_name == 'pull_request'
+     # if: github.event_name == 'pull_request'
       needs: security_scan
       name: build
       uses: ./.github/workflows/npmbuild_and_test.yaml
@@ -22,7 +22,7 @@ jobs:
       
       
   Snyk:
-      if: github.event_name == 'pull_request'
+     # if: github.event_name == 'pull_request'
       needs: build_and_test
       name: Snyk
       uses: ./.github/workflows/snyk.yml
