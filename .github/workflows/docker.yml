@@ -3,7 +3,9 @@ on:
   workflow_call:
   workflow_dispatch:
 
-permissions: write-all
+permissions: 
+    checks: write
+    security-events: write
   
 jobs:
     docker_build_push:
