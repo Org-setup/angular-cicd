@@ -3,11 +3,7 @@ on:
   workflow_call:
   workflow_dispatch:
 
-permissions:
-  actions: write
-  packages: write
-  issues: write
-  contents: write
+permissions: write-all
   
 jobs:
     docker_build_push:
