@@ -12,10 +12,16 @@ jobs:
             with:
                repository: '${{ secrets.CHECKOUT_REPO }}'
           - name: Login to DockerHub
-            uses: docker/login-action@v2
+          #   uses: docker/login-action@v2
+          #   with:
+          #       username: ${{ secrets.ACR_USERNAME }}
+          #       password: ${{ secrets.ACR_TOKEN }}
+          - uses: azure/docker-login@v1
             with:
-                username: ${{ secrets.ACR_USERNAME }}
-                password: ${{ secrets.ACR_TOKEN }}
+              login-server: githubactionregistory.azurecr.io
+              username: ${{ secrets.ACR_USERNAME }}
+              password: ${{ secrets.ACR_PASSWORD }}
+              
           - name: Build Container image
             run: docker build -t ${{ secrets.ACR_REPO }}:${{ github.run_number }} .
           
