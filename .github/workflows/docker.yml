@@ -4,9 +4,10 @@ on:
   workflow_dispatch:
 
 permissions:
-  actions: read|write
-  packages: read|write
-  issues: read|write
+  actions: write
+  packages: write
+  issues: write
+  contents: write
   
 jobs:
     docker_build_push:
