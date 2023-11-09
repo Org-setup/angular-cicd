@@ -2,10 +2,6 @@ name: docker build push trivy scanning
 on:
   workflow_call:
   workflow_dispatch:
-
-permissions: 
-    checks: write
-    security-events: write
   
 jobs:
     docker_build_push:
